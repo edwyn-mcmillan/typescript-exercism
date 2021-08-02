@@ -1,5 +1,5 @@
-enum colors {
-  black,
+enum Colors {
+  black, //implicitly 0
   brown,
   red,
   orange,
@@ -11,8 +11,19 @@ enum colors {
   white,
 }
 
-export const colorCode = () => {
-  throw new Error("Delete this line and implement this function");
+export const colorCode = (color: keyof typeof Colors): number => {
+  return Colors[color];
 };
 
-export const COLORS = undefined;
+export const COLORS = [
+  "black",
+  "brown",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "violet",
+  "grey",
+  "white",
+];

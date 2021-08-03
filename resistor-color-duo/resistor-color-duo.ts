@@ -1,28 +1,32 @@
-enum ColourNum {
-  black, //implicity 0
-  brown,
-  red,
-  orange,
-  yellow,
-  green,
-  blue,
-  violet,
-  grey,
-  white,
-}
-
 export class ResistorColour {
-  constructor(private colours: (keyof typeof ColourNum)[]) {
+  private colours: string[];
+
+  static colourArr = [
+    "black",
+    "brown",
+    "red",
+    "orange",
+    "yellow",
+    "green",
+    "blue",
+    "violet",
+    "grey",
+    "white",
+  ];
+
+  constructor(colours: string[]) {
     if (colours.length < 2) {
       throw Error("At least two colors need to be present");
     }
     this.colours = colours;
   }
 
-  value = (): number =>
-    Number(
+  value = (): number => {
+    return Number(
       this.colours
         .slice(0, 2)
-        .reduce((str, colour) => str + ColourNum[colour], "")
+        .map((colour) => ResistorColour.colourArr.indexOf(colour))
+        .join("")
     );
+  };
 }

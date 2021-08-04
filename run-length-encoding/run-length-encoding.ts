@@ -1,6 +1,6 @@
-/* -- Regex Notes -- 
+/* --- Regex Notes --- 
 
-. matches any character expect line breaks
+. matches any character except line breaks
 () is a grouping
 \1 after a grouping describes its length as 2 characters long
 + is any amount more

@@ -1,20 +1,22 @@
+/* -- Regex Notes -- 
+
+. matches any character expect line breaks
+() is a grouping
+\1 after a grouping describes its length as 2 characters long
++ is any amount more
+g flag is global
+\d is [0-9]
+
+*/
+
 const encode = (str: string): string => {
-  let count: number = 0;
-  const strArr: string[] = str.split("");
-  strArr.map((char, i) => {
-    if (char === strArr[i - 1]) {
-      count++;
-    } else {
-      String(count) + " " + char;
-      count = 0;
-    }
-  });
-  return strArr.join('')
+  return str.replace(/(.)\1+/g, (match) => match.length + match[0]);
 };
 
 const decode = (str: string): string => {
-  const strArr: string[] = str.split("");
-  return "yes";
+  return str.replace(/(\d+)(.)/g, (_, digit, character) =>
+    character.repeat(digit)
+  );
 };
 
 export default {

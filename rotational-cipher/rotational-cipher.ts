@@ -1,18 +1,9 @@
 import { getCiphers } from "crypto";
 
-// const cipher = "abcdefghijklmnopqrstuvwxyz";
-
 export default class RotationalCipher {
   public static rotate = (text: string, key: number): string => {
-
-    //search cipher Map by string and return number
-    const getByValue = (map: Map<string, number>, search: string): number => {
-      for (const [key, value] of map.entries()) {
-        if (key === search) return value;
-      }
-      return NaN;
-    };
-
+    //Create a cipherMap of key, value pairs
+    //a = 0, b = 1, c = 3 etc...
     const cipherMap = new Map();
     let charCode = 97; //starts at character 'a'
     let index = 0;
@@ -23,7 +14,13 @@ export default class RotationalCipher {
       index++;
     }
 
-    console.log(getByValue(cipherMap, "z"));
+    //Search cipher Map by number and return string
+    const getByValue = (map: Map<string, number>, search: number): string => {
+      for (const [key, value] of map.entries()) {
+        if (value === search) return key;
+      }
+      return " ";
+    };
 
     return text
       .split("")
@@ -31,27 +28,13 @@ export default class RotationalCipher {
         const isLowerCase = character.toLowerCase() === character;
         const cipherIndex = cipherMap.get(character.toLowerCase());
 
-        const difference = cipherIndex + key;
+        const newPosition = (cipherIndex + key) % 26;
         const rotatedCipher =
-          cipherIndex === -1 ? character : cipherMap.get(getByValue(cipherMap, character));
+          cipherIndex === undefined //cipherIndex === undefined if not a-z character.
+            ? character
+            : getByValue(cipherMap, newPosition);
         return isLowerCase ? rotatedCipher : rotatedCipher.toUpperCase();
       })
       .join("");
   };
 }
-
-// const regex = /[^\s]/g;
-// const matchedText = text.match(regex);
-
-// if (!matchedText || matchedText.length === 0) {
-//   return text;
-// }
-
-// matchedText.map((character) => {
-//   const isLowerCase = character.toLowerCase() === character;
-//   const cipherIndex = cipher.indexOf(character.toLowerCase());
-//   const rotatedCipher = cipher[(cipherIndex + key) % cipher.length];
-//   return isLowerCase ? rotatedCipher : rotatedCipher.toUpperCase();
-// });
-
-// return matchedText.join("")

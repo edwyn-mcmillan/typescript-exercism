@@ -1,13 +1,17 @@
-class Raindrops {
+export default class Raindrops {
+  public convert(input: number): string {
+    let result = "";
 
-    constructor (input: number) {
-    
+    if (input % 3 === 0) {
+      result += "Pling";
+    }
+    if (input % 5 === 0) {
+      result += "Plang";
+    }
+    if (input % 7 === 0) {
+      result += "Plong";
     }
 
-    convert (): string {
-        
-        return "hello"
-    }
+    return result ? result : String(input);
+  }
 }
-
-export default Raindrops

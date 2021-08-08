@@ -30,8 +30,3 @@ export default class PerfectNumbers {
   }
 }
 
-//find factors of input
-//add factors together
-//perfect if sum == input
-//abundant if sum > input
-//ddeficient if sum < input

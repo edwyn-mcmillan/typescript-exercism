@@ -1,12 +1,10 @@
-import { isRegExp } from "util";
-
 class Bob {
-  hey(input: string) {
-    if (this.isNothingSaid(input) && !this.isDigitSaid(input)) {
+  hey(input: string): string {
+    if (!this.isAnythingSaid(input) && !this.isDigitSaid(input)) {
       return "Fine. Be that way!";
     }
 
-    if (this.isUpperCase(input) && this.isQuestion(input)) {
+    if (this.isUpperCase(input) && this.isQuestion(input) && this.isAnythingSaid(input)) {
       return "Calm down, I know what I'm doing!";
     }
 
@@ -14,36 +12,29 @@ class Bob {
       return "Sure.";
     }
 
-    if (this.isUpperCase(input)) {
+    if (this.isUpperCase(input) && this.isAnythingSaid(input)) {
       return "Whoa, chill out!";
     }
 
     return "Whatever.";
   }
 
-  isNothingSaid(string: string) {
-    return !string.match(/[a-zA-Z]/g);
+  private isAnythingSaid(string: string) {
+    return string.match(/[a-zA-Z]/g);
   }
 
-  isDigitSaid(string: string) {
+  private isDigitSaid(string: string) {
     return string.match(/\d/g);
   }
 
-  isUpperCase(string: string) {
+  private isUpperCase(string: string) {
     return string.toUpperCase() === string;
   }
 
-  isQuestion(string: string) {
-    return string.match(/\?/g);
+  private isQuestion(string: string) {
+    return string.match(/\?\s*$/g); 
   }
 }
 
 export default Bob;
 
-/*
-Sure === if it's a question
-Whoa, chill out! === if it's ALL CAPS
-Calm down, I know what I'm doing! === if you YELL a question
-Fine. Be that way! === if nothing is said
-Whatever === to anything else
-*/

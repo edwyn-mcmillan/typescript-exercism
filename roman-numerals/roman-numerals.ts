@@ -3,10 +3,6 @@ export default class RomanNumerals {
     const result: string[] = [];
     const numArr = String(input).split("");
 
-    const methodsArr = [this.oneTranslate, this.tenTranslate, this.hundredTranslate, this.thousandTranslate];
-
-    
-
     if (numArr.length === 1) {
       result.push(methodsArr[0](Number(numArr[0])));
     }

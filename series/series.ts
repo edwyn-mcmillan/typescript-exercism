@@ -8,22 +8,14 @@ class Series {
   }
 
   public slices(value: number): number[][] {
-
-    if(value > this.input.length){
-        throw new Error()
+    if (value > this.input.length) {
+      throw new Error();
     }
-
-
 
     const result: number[][] = [];
 
-    for (let i = 0; i < value; i++) {
-      if (this.digits.length - i >= value) {
-        result.push(this.digits.slice(i, value));
-        value++;
-      } else {
-        break;
-      }
+    for (let i = 0; i < (this.digits.length -  (value - 1)); i ++) {
+      result.push(this.digits.slice(i, (i + value)));
     }
     return result;
   }

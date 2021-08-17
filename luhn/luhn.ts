@@ -13,23 +13,15 @@ class Luhn {
     }
 
     let total = 0;
-    console.log(cleanInput);
-
     for (let i = 0; i < cleanInput.length; i++) {
       i % 2 === 0 ? cleanInput[i] * 2 : cleanInput[i]
       cleanInput[i] > 9 ? cleanInput[i] - 9: cleanInput[i]
       total += cleanInput[i];
     }
-
     return total % 10 == 0;
   }
 }
 
 export default Luhn;
 
-// if (i % 2 === 0) {
-//     cleanInput[i] = cleanInput[i] * 2;
-//     if (cleanInput[i] > 9) {
-//       cleanInput[i] = cleanInput[i] - 9;
-//     }
-//   }
+

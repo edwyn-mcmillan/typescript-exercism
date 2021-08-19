@@ -1,15 +1,44 @@
 export default class Robot {
-  constructor() {}
+  public name: string;
+  public nameDB: string[] = [];
 
-  public get name(): string {
-    throw new Error('Implement Robot#name')
+  constructor() {
+    this.name = this.getName();
+  }
+
+  randomCharacter(): string {
+    return "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)];
+  }
+
+  randomDigit(): string {
+    return "0123456789"[Math.floor(Math.random() * 10)];
+  }
+
+  randomName(): string {
+    const randomName =
+      this.randomCharacter() +
+      this.randomCharacter() +
+      this.randomDigit() +
+      this.randomDigit() +
+      this.randomDigit();
+
+    return randomName;
+  }
+
+  public getName(): string {
+    let newName = this.randomName();
+    while (this.nameDB.includes(newName)) {
+      newName = this.randomName();
+    }
+    this.nameDB.push(newName)
+    return newName;
   }
 
   public resetName(): void {
-    throw new Error('Implement Robot#resetName')
+    this.name = this.getName();
   }
 
   public static releaseNames(): void {
-    throw new Error('Implement Robot.releaseNames')
+    console.log('---');
   }
 }
